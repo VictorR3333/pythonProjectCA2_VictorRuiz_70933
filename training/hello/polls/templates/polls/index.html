@@ -1,0 +1,53 @@
+<head>
+  <style>
+    a {
+      text-decoration:none;
+    }
+    body{
+      background-image: url("http://www.solofondos.com/wp-content/uploads/2015/11/21omxpw.jpg");
+      text-align: center;
+      margin-top: 20%;
+    }
+    button {
+      color: #0C00FF;
+      background: transparent;
+      border: 2px solid #0C00FF;
+      border-radius: 6px;
+      border: none;
+            color: blue;
+            padding: 16px 32px;
+            text-align: center;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            -webkit-transition-duration: 0.4s;
+            transition-duration: 0.4s;
+            cursor: pointer;
+            text-decoration: none;
+            text-transform: uppercase;
+      }
+      button {
+            background-color: white;
+            color: black;
+            border: 2px solid #008CBA;
+      }
+      button:hover {
+            background-color: #008CBA;
+            color: white;
+       }
+  </style>
+</head>
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'polls/style.css' %}">
+
+{% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+        <li><button><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li></button>
+    </ul>
+    {% endfor %}
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}

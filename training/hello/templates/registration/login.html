@@ -1,0 +1,66 @@
+<!-- templates/registration/login.html -->
+
+<head>
+  <style>
+    form{
+      padding: 60px;
+      max-width: 400px;
+      background-color: #E7E7E7;
+      margin: 0 auto;
+    }
+
+    form input, form textarea{
+      margin-bottom: 15px;
+      font-family: "Roboto", sans-serif;
+      width: 100%;
+      padding: 10px;
+      box-sizing: border-box;
+      border: none;
+      color: #525c66;
+      font-size: 1em;
+      resize: none;
+    }
+
+    form button {
+        display: block;
+        background-color: #0095eb;
+        padding: 10px 45px 10px 45px;
+        border: 0;
+        font-size: 1em;
+        color: 	white;
+      font-family: "Roboto", sans-serif;
+    }
+    form button: hover{
+        background-color: #046193;
+    }
+    textarea {  resize: none;}
+    body{
+      background-image: url("http://www.solofondos.com/wp-content/uploads/2015/11/21omxpw.jpg");
+    }
+    h2 {
+       font-size:30px;
+       font-family:Courier;
+       font-weight:bold;
+       line-height:30px;
+       letter-spacing:5px;
+       text-transform:capitalize;
+       text-indent:30px;
+       text-align: center;
+       margin-top: 10%;
+       text-shadow: 7px 4px 5px blue;
+    }
+  </style>
+</head>
+
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<h2>Log In</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Log In</button>
+</form>
+{% endblock %}

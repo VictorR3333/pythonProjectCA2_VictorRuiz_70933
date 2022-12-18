@@ -1,0 +1,79 @@
+<head>
+  <style>
+    a {
+      text-decoration:none;
+    }
+    body{
+      background-image: url("http://www.solofondos.com/wp-content/uploads/2015/11/21omxpw.jpg");
+      text-align: center;
+      margin-top: 20%;
+    }
+    button {
+      color: #0C00FF;
+      background: transparent;
+      border: 2px solid #0C00FF;
+      border-radius: 6px;
+      border: none;
+            color: blue;
+            padding: 16px 32px;
+            text-align: center;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            -webkit-transition-duration: 0.4s;
+            transition-duration: 0.4s;
+            cursor: pointer;
+            text-decoration: none;
+            text-transform: uppercase;
+      }
+      button {
+            background-color: white;
+            color: black;
+            border: 2px solid #008CBA;
+            margin-top: 10px;
+      }
+      button:hover {
+            background-color: #008CBA;
+            color: white;
+       }
+       h1 {
+           font-size:30px;
+           font-family:Courier;
+           font-weight:bold;
+           line-height:30px;
+           letter-spacing:5px;
+           text-transform:capitalize;
+           text-indent:30px;
+           text-align: center;
+           margin-top: 16%;
+           text-shadow: 7px 4px 5px blue;
+        }
+        li {
+           font-size:15px;
+           font-family:Courier;
+           font-weight:bold;
+           line-height:30px;
+           letter-spacing:5px;
+           text-transform:capitalize;
+           text-indent:30px;
+           text-align: center;
+           text-shadow: 7px 4px 5px blue;
+        }
+  </style>
+</head>
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'polls/style.css' %}">
+
+<h1>{{ question.question_text }}</h1>
+
+
+{% for choice in question.choice_set.all %}
+    <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+{% endfor %}
+
+
+<button><a href="{% url 'polls:detail' question.id %}">Vote again?</a></button>
+<br>
+<button><a href="{% url 'home' %}">Quit Voting</a></button>

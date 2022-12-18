@@ -1,0 +1,58 @@
+<head>
+  <style>
+    form{
+      padding: 60px;
+      max-width: 400px;
+      background-color: #E7E7E7;
+      margin: 0 auto;
+    }
+
+    form input, form textarea{
+      margin-bottom: 15px;
+      font-family: "Roboto", sans-serif;
+      width: 100%;
+      padding: 10px;
+      box-sizing: border-box;
+      border: none;
+      color: #536664;
+      font-size: 1em;
+      resize: none;
+    }
+
+    form input {
+        display: block;
+        background-color: #536664;
+        padding: 10px 45px 10px 45px;
+        border: 0;
+        font-size: 1em;
+        color: 	White;
+      font-family: "Roboto", sans-serif;
+    }
+    form input: hover{
+        background-color: White;
+    }
+    textarea {  resize: none;}
+    body{
+      background-image: url("http://www.solofondos.com/wp-content/uploads/2015/11/21omxpw.jpg");
+      text-align: center;
+      margin-top: 10%;
+    }
+  </style>
+</head>
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'polls/style.css' %}">
+
+<form action="{% url 'polls:vote' question.id %}" method="post">
+{% csrf_token %}
+
+    <h1>{{ question.question_text }}</h1>
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    {% for choice in question.choice_set.all %}
+        <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+    {% endfor %}
+
+    <input type="submit" value="Vote">
+</form>
